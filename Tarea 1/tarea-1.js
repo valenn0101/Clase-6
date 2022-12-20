@@ -1,18 +1,24 @@
 const $botonEnviar = document.getElementById("primer-paso");
-const integrantes = Number(document.getElementById("cantidad-integrantes").value);
+const integrantes = Number(
+  document.getElementById("cantidad-integrantes").value
+);
 const $botonCalcular = document.getElementById("segundo-paso");
 const $botonReiniciar = document.getElementById("reiniciar");
-function mostrarBotonCalcular() {
-  document.getElementById("segundo-paso").className = " ";
+
+function cambiarBotonCalcular(mostrar) {
+  if (mostrar) {
+    document.getElementById("segundo-paso").className = "";
+  } else {
+    document.getElementById("segundo-paso").className = "ocultar";
+  }
 }
-function ocultarBotonCalcular() {
-  document.getElementById("segundo-paso").className = "ocultar";
-}
-function mostrarResultados() {
-  document.getElementById("resultados").className = " ";
-}
-function ocultarResultados() {
-  document.getElementById("resultados").className = "ocultar";
+
+function cambiarBotonResultados(mostrar) {
+  if (mostrar) {
+    document.getElementById("resultados").className = " ";
+  } else {
+    document.getElementById("resultados").className = "ocultar";
+  }
 }
 
 /*
@@ -22,7 +28,7 @@ function ocultarResultados() {
 */
 
 $botonEnviar.onclick = function () {
-  mostrarBotonCalcular();
+  cambiarBotonCalcular(true);
   const numeroDeIntregantes = Number(
     document.getElementById("cantidad-integrantes").value
   );
@@ -40,7 +46,7 @@ function crearFormularios(numeroDeIngregantes) {
   for (let i = 1; i <= numeroDeIngregantes; i++) {
     $formularios.innerHTML += `<form id="integrante-${i}" class="familia">
           <h3>Familiar Numero ${i}</h3>
-          <label for="edad">Edad</label>
+          <label for="edad-familiares">Edad</label>
           <input type="number" name="Edad" class="familiares" required>
           </form> <br/>`;
   }
@@ -64,7 +70,7 @@ $botonCalcular.onclick = function () {
   mostrarEdad("mayor", mostrarMayor(numeros));
   mostrarEdad("menor", mostrarMenor(numeros));
   mostrarEdad("promedio", calcularPromedio(numeros));
-  mostrarResultados();
+  cambiarBotonResultados(true);
 };
 
 function obtenerEdades() {
@@ -91,6 +97,6 @@ $botonReiniciar.onclick = function () {
 
 function reiniciar() {
   borrarEdades();
-  ocultarBotonCalcular();
-  ocultarResultados();
+  cambiarBotonCalcular(false);
+  cambiarBotonResultados(false);
 }
