@@ -10,22 +10,16 @@ const $botonAgregar = document.getElementById("agregar-familiar");
 const $botonQuitar = document.getElementById("quitar-familiar");
 const $botonCalcular = document.getElementById("calcular-sueldos");
 
-function cambiarBotonCalcular() {
-    document.getElementById("calcular-sueldos").className = " ";
+function cambiarEstadoBotonCalcular() {
+  document.getElementById("calcular-sueldos").className = " ";
 }
 
-function cambiarBotonResultados() {
-    document.getElementById("resultados-finales").className = " ";
+function cambiarEstadoBotonResultados() {
+  document.getElementById("resultados-finales").className = " ";
 }
-
-/*
-
-Agregar formularios
-
-*/
 
 $botonAgregar.onclick = function crearFormularios() {
-  cambiarBotonCalcular();
+  cambiarEstadoBotonCalcular();
   const formularios = document.getElementById("lista-de-familiares");
   formularios.innerHTML += `<form id="integrante" class="familia">
     <h3>Familiar</h3>
@@ -34,30 +28,19 @@ $botonAgregar.onclick = function crearFormularios() {
     </form> <br/>`;
 };
 
-/*
-
-Eliminar formulario
-
-*/
-
 $botonQuitar.onclick = function borrarFormulario() {
-  const divPadre = document.getElementById("lista-de-familiares");
-  const formularioHijo = divPadre.lastElementChild;
-  divPadre.removeChild(formularioHijo);
+  const $listaFamiliares = document.getElementById("lista-de-familiares");
+  const formularioHijo = $listaFamiliares.lastElementChild;
+  $listaFamiliares.removeChild(formularioHijo);
 };
 
-/*
-
-Calcular
-
-*/
 $botonCalcular.onclick = function () {
   const numeros = obtenerSalarios();
   mostrarSalario("mayor", obtenerMayorSalario(numeros));
   mostrarSalario("menor", obtenerMenorSalario(numeros));
   mostrarSalario("mensualidad", obtenerPromedioMensual(numeros));
   mostrarSalario("promedio", obtenerPromedioAnual(numeros));
-  cambiarBotonResultados();
+  cambiarEstadoBotonResultados();
 };
 
 function obtenerSalarios() {
