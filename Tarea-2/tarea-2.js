@@ -10,16 +10,16 @@ const $botonAgregar = document.getElementById("agregar-familiar");
 const $botonQuitar = document.getElementById("quitar-familiar");
 const $botonCalcular = document.getElementById("calcular-sueldos");
 
-function ocultarBotonCalcular() {
+function mostrarBotonCalcular() {
     document.getElementById("calcular-sueldos").className = " ";
 }
 
-function ocultarBotonResultados() {
+function mostrarBotonResultados() {
     document.getElementById("resultados-finales").className = " ";
 }
 
 $botonAgregar.onclick = function crearFormularios() {
-  ocultarBotonCalcular();
+  mostrarBotonCalcular();
   const formularios = document.getElementById("lista-de-familiares");
   formularios.innerHTML += `<form id="integrante" class="familia">
     <h3>Familiar</h3>
@@ -40,7 +40,7 @@ $botonCalcular.onclick = function () {
   mostrarSalario("menor", obtenerMenorSalario(numeros));
   mostrarSalario("mensualidad", obtenerPromedioAnual(numeros)/12);
   mostrarSalario("promedio", obtenerPromedioAnual(numeros));
-  ocultarBotonResultados();
+  mostrarBotonResultados();
 };
 
 function obtenerSalarios() {
